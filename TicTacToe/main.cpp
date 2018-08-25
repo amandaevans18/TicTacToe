@@ -1,29 +1,44 @@
 #include<iostream>
+//gameboard includes all the code
 #include"gameBoard.h"
 int main()
 {
-	int gameBoard[3][3] = { {1,2,3 }, {4, 5, 6}, {7, 8, 9 }};
-	int playerOne = 0;
+	
+	int gameBoard[3][3] = {0};
+	int playerRow = 0;
+	int playerCol = 0;
 
-	int playerTwo = 0;
+	gettingRandC checkedPlayerIn{0,0};
 
-	bool playerOnePlaced = false;
+	int whichPlayer = 0;
 	bool gameRunning = true;
 
-	//while (gameRunning)
-	//{
-	drawGameBoard(gameBoard, playerOne);
+	while (gameRunning)
+	{
+		whichPlayer++;
+		printGameBoard(gameBoard);
 		std::cout << "Player One whats your first move?" << std::endl;
-		std::cout << "Location? " << std::endl;
-		std::cin >> playerOne;
-		if(playerOne <= 9)
-		{
+		std::cout << "Row? " << std::endl;
+		std::cin >> playerRow;
+		std::cout << "Column" << std::endl;
+		std::cin >> playerCol;
+		checkedPlayerIn = checkPlayer(gameBoard, playerRow, playerCol);
+		dataUpdate(gameBoard,checkedPlayerIn, whichPlayer);
+		whichPlayer++;
+		printGameBoard(gameBoard);
+		std::cout << "Player Two whats your first move?" << std::endl;
+		std::cout << "Row? " << std::endl;
+		std::cin >> playerRow;
+		std::cout << "Column" << std::endl;
+		std::cin >> playerCol;
+		checkedPlayerIn = checkPlayer(gameBoard, playerRow, playerCol);
+		dataUpdate(gameBoard, checkedPlayerIn, whichPlayer);
+		printGameBoard(gameBoard);
+		whichPlayer--;
+			
 
-			drawGameBoard(gameBoard, playerOne);
-			playerOnePlaced = true;
-		}
 
-	//}
+	}
 	system("pause");
 	return 0;
 }
