@@ -1,31 +1,6 @@
 #include<iostream>
 #include"gameBoard.h"
 
-//this checks the players input and then spits a struct of row and col back
-gettingRandC checkPlayer(int gameBoard[3][3],int row,int column) 
-{ 
-	gettingRandC pointInArray = {0,0};
-	//Searching through placeholders r=rows and c=columns
-	if (row > 0 && row <= 3 && column > 0 && column <= 3) 
-	{
-
-		if (gameBoard[row][column] == 0)
-		{
-			pointInArray = {row-1,column-1};
-		}
-		else 
-		{
-			std::cout << "Sorry that spot is taken!" << std::endl;
-		}
-	}
-	else
-	{
-		std::cout << "Invalid Input! input is out of bounds" << std::endl;
-
-	}
-
-	return pointInArray;
-}
 
 //Prints game board and stays updated  
 //checkedPlayerINp should be the return of updateGameBoard

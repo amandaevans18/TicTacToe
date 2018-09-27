@@ -6,9 +6,6 @@ struct gettingRandC
 	int row;
 	int column;
 };
-
-gettingRandC checkPlayer(int gameBoard[3][3], int row,int column);
-
 void printGameBoard(int board[3][3]);
 
 void printRules();
