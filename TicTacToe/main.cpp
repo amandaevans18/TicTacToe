@@ -49,6 +49,7 @@ int main()
 				continue;
 			}
 		}
+
 		if (checkForWin(gameBoard, whichPlayer) == 0)
 		{
 			cout << "The game goes on!" << endl;

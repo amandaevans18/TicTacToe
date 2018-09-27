@@ -48,6 +48,7 @@ int checkForWin(int board[3][3], int whichPlayer)
 	int yes = 0;
 	for (int r = 0; r < 3; r++)
 	{
+		yes = 0;
 		checkVal = board[r][0];
 		for (int c = 0; c < 3; c++)
 		{
@@ -61,10 +62,14 @@ int checkForWin(int board[3][3], int whichPlayer)
 					yes = 0;
 					return 1;
 				}
-				else if(checkVal == 2 && yes == 3)
+				if(checkVal == 2 && yes == 3)
 				{
 					yes = 0;
 					return 2;
+				}
+				if(yes == 9)
+				{
+					yes = 0;
 				}
 			}
 		}
@@ -72,26 +77,46 @@ int checkForWin(int board[3][3], int whichPlayer)
 	//check for vertical
 	for (int r = 0; r < 3; r++)
 	{
+		yes = 0;
 		checkVal = board[0][r];
 		for (int c = 0; c < 3; c++)
 		{
 			if (checkVal == board[r][c])
 			{
 				yes++;
-				if (checkVal == 1 && yes == 3)
+				if (yes == 3)
 				{
-					yes = 0;
-					return 1;
-				}
-				else if (checkVal == 2 && yes == 3)
-				{
-					yes = 0;
-					return 2;
+					if (checkVal == 1)
+					{
+						yes = 0;
+						return 1;
+					}
+					if (checkVal == 2)
+					{
+						yes = 0;
+						return 2;
+					}
 				}
 			}
 		}
 	}
 
+	if (board[0][0] == 1 && board[1][1] == 1 && board[2][2] == 1) 
+	{
+		return 1;
+	}
+	else if (board[0][0] == 2 && board[1][1] == 2 && board[2][2] == 2)
+	{
+		return 2;
+	}
+	else if (board[0][2] == 1 && board[1][1] == 1 && board[2][0] == 1)
+	{
+		return 1;
+	}
+	else if (board[0][2] == 2 && board[1][1] == 2 && board[2][0] == 2)
+	{
+		return 2;
+	}
 	// if we havent returned yet then it finna be a tie???!!!! if we get to the end w/o returning anything then it has to be that the game is still going!
 	for (int r = 0; r < 3; r++) 
 	{
@@ -109,7 +134,6 @@ int checkForWin(int board[3][3], int whichPlayer)
 		}
 	
 	}
-
 	return 0;
 }
 
