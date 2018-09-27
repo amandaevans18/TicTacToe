@@ -41,6 +41,78 @@ char dataConversion(int board[3][3], int o, int x)
 
 }
 
+int checkForWin(int board[3][3], int whichPlayer)
+{
+	//check for horiz win
+	int	checkVal = 0;
+	int yes = 0;
+	for (int r = 0; r < 3; r++)
+	{
+		checkVal = board[r][0];
+		for (int c = 0; c < 3; c++)
+		{
+			//check to see if the first value in the line is equal to the val being read
+			// the value being read will always left to right 
+			if (checkVal == board[r][c])
+			{
+				yes++;
+				if (checkVal == 1 && yes == 3) 
+				{
+					yes = 0;
+					return 1;
+				}
+				else if(checkVal == 2 && yes == 3)
+				{
+					yes = 0;
+					return 2;
+				}
+			}
+		}
+	}
+	//check for vertical
+	for (int r = 0; r < 3; r++)
+	{
+		checkVal = board[0][r];
+		for (int c = 0; c < 3; c++)
+		{
+			if (checkVal == board[r][c])
+			{
+				yes++;
+				if (checkVal == 1 && yes == 3)
+				{
+					yes = 0;
+					return 1;
+				}
+				else if (checkVal == 2 && yes == 3)
+				{
+					yes = 0;
+					return 2;
+				}
+			}
+		}
+	}
+
+	// if we havent returned yet then it finna be a tie???!!!! if we get to the end w/o returning anything then it has to be that the game is still going!
+	for (int r = 0; r < 3; r++) 
+	{
+		for (int c = 0; c < 3; c++) 
+		{
+			if (board[r][c] != 0) 
+			{
+				yes++;
+				if (yes == 9)
+				{
+					yes = 0;
+					return 3;
+				}
+			}
+		}
+	
+	}
+
+	return 0;
+}
+
 void printRules() 
 {
 	std::cout << "With the rules!" << std::endl;
